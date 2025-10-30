@@ -1,0 +1,109 @@
+@startuml DiagramaClasesEjemploClases
+
+' Configuración
+skinparam classAttributeIconSize 0
+skinparam classFontSize 11
+skinparam linetype ortho
+
+' Clase abstracta Shape3D
+abstract class Shape3D {
+  {abstract} +getVolume() : double
+  {abstract} +getSurfaceArea() : double
+  +~Shape3D()
+}
+
+' Clase Cube (hereda de Shape3D)
+class Cube {
+  -length : double
+  +Cube(len : double)
+  +Cube()
+  +getVolume() : double
+  +getSurfaceArea() : double
+  +setLength(len : double) : void
+  +getLength() : double
+  +~Cube()
+}
+
+' Clase Vehicle
+class Vehicle {
+  -speed : int
+  #brand : string
+  +Vehicle(b : string, s : int)
+  +Vehicle(b : string)
+  +Vehicle(s : int)
+  +getSpeed() : int
+  +setSpeed(s : int) : void
+  +setBrand(b : string) : void
+  +getBrand() : string
+  +display() : void
+  +~Vehicle()
+}
+
+' Clase Car (hereda de Vehicle)
+class Car {
+  -numDoors : int
+  -numWheels : int
+  +Car(b : string, s : int, doors : int, wheels : int = 4)
+  +getNumDoors() : int
+  +setNumDoors(doors : int) : void
+  +getNumWheels() : int
+  +setNumWheels(wheels : int) : void
+  +display() : void
+  +~Car()
+}
+
+' Clase AirVehicle (hereda de Vehicle)
+class AirVehicle {
+  -altitude : int
+  -isMultirotor : bool
+  +AirVehicle(b : string, s : int, alt : int)
+  +display() : void
+}
+
+' Clase Complex (independiente)
+class Complex {
+  -real : double
+  -imag : double
+  +nombre : string
+  +Complex()
+  +Complex(re : double, im : double = 0.0)
+  +Complex(other : Complex)
+  +add(a : double, b : double) : float
+  +add(a : int, b : int) : int
+  +SetData() : void
+  +SetReal(re : double) : void
+  +SetImag(im : double) : void
+  +GetReal() : double
+  +GetImag() : double
+  +operator+(other : Complex) : Complex
+  +operator+() : Complex
+  +operator-(other : Complex) : Complex
+  +operator*(other : Complex) : Complex
+  +operator/(other : Complex) : Complex
+  +operator=(other : Complex) : Complex&
+  +display() : void
+}
+
+' Relaciones de herencia
+Shape3D <|-- Cube
+Vehicle <|-- Car
+Vehicle <|-- AirVehicle
+
+note right of Shape3D
+  Clase abstracta
+  con métodos virtuales puros
+end note
+
+note right of Vehicle
+  Clase base para
+  vehículos terrestres
+  y aéreos
+end note
+
+note bottom of Complex
+  Clase independiente para
+  operaciones con números complejos.
+  Incluye sobrecarga de operadores.
+end note
+
+@enduml
