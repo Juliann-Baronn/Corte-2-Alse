@@ -1,0 +1,3 @@
+/home/julian/corte_2_alse/entrega_4/ejercicio_1_carrito/build/CMakeFiles/carrito.dir
+/home/julian/corte_2_alse/entrega_4/ejercicio_1_carrito/build/CMakeFiles/edit_cache.dir
+/home/julian/corte_2_alse/entrega_4/ejercicio_1_carrito/build/CMakeFiles/rebuild_cache.dir
