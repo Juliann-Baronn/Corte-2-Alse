@@ -1,3 +1,8 @@
+/**
+ * @file Producto.cpp
+ * @brief Implementación de los métodos de la clase Producto.
+ */
+
 #include "../include/Producto.h"
 #include <iostream>
 #include <iomanip>
@@ -7,14 +12,18 @@ Producto::Producto(std::string articulo, float valorUnitario, int unidades, int 
     : nombreArticulo(articulo), precioUnitario(valorUnitario), 
       cantidadDisponible(unidades), porcentajeDescuento(desc) {}
 
-// Actualizar el precio del producto
+/**
+ * @brief Actualiza el precio del producto.
+ */
 void Producto::actualizarPrecio(float nuevoValor) {
     precioUnitario = nuevoValor;
     std::cout << "Precio actualizado a: $" << std::fixed << std::setprecision(2) 
               << nuevoValor << std::endl;
 }
 
-// Mostrar resumen del producto
+/**
+ * @brief Muestra todas las características del producto en consola.
+ */
 void Producto::mostrarResumen() const {
     float precioConDescuento = precioUnitario * (1 - porcentajeDescuento / 100.0f);
     
@@ -31,7 +40,9 @@ void Producto::mostrarResumen() const {
     std::cout << "===========================\n" << std::endl;
 }
 
-// Realizar venta de productos
+/**
+ * @brief Realiza la venta de una cantidad específica de productos.
+ */
 float Producto::realizarVenta(int unidadesSolicitadas) {
     if (unidadesSolicitadas <= 0) {
         std::cout << "Error: La cantidad debe ser mayor a 0" << std::endl;
@@ -44,11 +55,8 @@ float Producto::realizarVenta(int unidadesSolicitadas) {
         return 0.0f;
     }
     
-    // Calcular precio con descuento
     float precioConDescuento = precioUnitario * (1 - porcentajeDescuento / 100.0f);
     float totalVenta = precioConDescuento * unidadesSolicitadas;
-    
-    // Reducir stock
     cantidadDisponible -= unidadesSolicitadas;
     
     std::cout << "Venta realizada: " << unidadesSolicitadas << " x " << nombreArticulo 
@@ -58,7 +66,9 @@ float Producto::realizarVenta(int unidadesSolicitadas) {
     return totalVenta;
 }
 
-// Reabastecer inventario
+/**
+ * @brief Aumenta la cantidad disponible en inventario.
+ */
 int Producto::agregarInventario(int unidadesNuevas) {
     if (unidadesNuevas <= 0) {
         std::cout << "Error: La cantidad debe ser mayor a 0" << std::endl;
@@ -72,7 +82,9 @@ int Producto::agregarInventario(int unidadesNuevas) {
     return cantidadDisponible;
 }
 
-// Obtener valor total del inventario
+/**
+ * @brief Calcula el valor total del inventario con el descuento aplicado.
+ */
 float Producto::obtenerValorTotal() const {
     float precioConDescuento = precioUnitario * (1 - porcentajeDescuento / 100.0f);
     return precioConDescuento * cantidadDisponible;
